@@ -36,12 +36,13 @@ window.onload = function () {
   });
 
   canvas.addEventListener("dblclick", (e) => {
-    console.log(triangles.length);
+    triangles.pop();
+    triangles.pop();
     dx = e.pageX - canvasLeft;
     dy = e.pageY - canvasTop;
 
     console.log(triangles);
-    for (var i = 0; i < triangles.length - 2; i++) {
+    for (var i = 0; i < triangles.length; i++) {
       l1 = Math.sqrt(
         Math.pow(dx - triangles[i].xs, 2) + Math.pow(dy - triangles[i].ys, 2)
       );
@@ -54,17 +55,17 @@ window.onload = function () {
       );
 
       var sumP = l1 + l2 + l3;
-
-      var width = Math.abs(triangles[i].xt - triangles[i].xs);
-      var height = Math.abs(triangles[i].ye - triangles[i].ys);
-      context.clearRect(triangles[i].xs, triangles[i].ys, width, height);
+      console.log(sumP);
 
       if (sumP < triangles[i].perim) {
+        console.log(triangles[i]);
         var width = triangles[i].xt - triangles[i].xs;
         var height = triangles[i].ye - triangles[i].ys;
-        console.log(width);
-        console.log(height);
+        /*context.beginPath();
+        context.rect(triangles[i].xs, triangles[i].ys, width, height);
+        context.stroke();*/
         context.clearRect(triangles[i].xs, triangles[i].ys, width, height);
+        triangles.splice(i, 1);
         break;
       }
     }
