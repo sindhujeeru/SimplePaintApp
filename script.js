@@ -224,9 +224,8 @@ window.onload = function () {
 
     if (checkPointsInTriangle(xStart, yStart)) {
       let tri = getTriangle(xStart, yStart);
-      tri.isDragging = true;
 
-      if (tri.isDragging) var width = tri.xt - tri.xs;
+      var width = tri.xt - tri.xs;
       var height = tri.ye - tri.ys;
 
       context.clearRect(tri.xs - 1, tri.ys + 1, width + 1, height - 2);
